@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rota da Luz | Cruzadinha de Arquitetura Computacional</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="luz">
+  <header class="topo">
+    <div class="topo-in">
+      <div class="marca">
+        <h1>Rota da Luz</h1>
+        <p>Cruzadinha de Arquitetura Computacional</p>
+      </div>
+      <nav class="abas" role="tablist" aria-label="Telas do jogo">
+        <button class="aba" role="tab" id="aba-cruzada" aria-selected="true" aria-controls="tela-cruzada">Rota da Luz</button>
+        <button class="aba" role="tab" id="aba-descobrir" aria-selected="false" aria-controls="tela-descobrir">Descobrir a palavra</button>
+        <a class="btn btn-ouro" href="tstar.html">Jogar T-star &rarr;</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ TELA 1: ROTA DA LUZ (CRUZADINHA) ============ -->
+    <section id="tela-cruzada" role="tabpanel" aria-labelledby="aba-cruzada">
+      <div class="layout">
+        <div class="cartao">
+          <div class="barra">
+            <button class="btn btn-ouro" id="btn-palavra" type="button">Conferir palavra</button>
+            <button class="btn btn-ciano" id="btn-conferir" type="button">Conferir tudo</button>
+            <button class="btn btn-sec" id="btn-reiniciar" type="button">Reiniciar</button>
+            <div class="contador" id="contador" aria-live="polite">0 de 16 palavras</div>
+          </div>
+          <p class="status" id="status-cruzada" aria-live="polite"></p>
+          <div class="tabuleiro-wrap">
+            <div class="tabuleiro" id="tabuleiro" role="grid" aria-label="Tabuleiro da cruzadinha"></div>
+          </div>
+          <p class="suave" style="margin-top:10px">Digite direto nas casas. Aperte <b>Enter</b> (ou <b>Conferir palavra</b>) para confirmar a palavra selecionada, uma por vez. As letras certas ficam travadas no lugar e as erradas são removidas. Setas movem o cursor; a barra de espaço troca entre horizontal e vertical.</p>
+        </div>
+
+        <div class="cartao">
+          <h2>Pistas</h2>
+          <p class="suave">Use as setas para visitar as pistas uma a uma. Cada pista leva você até a palavra no tabuleiro.</p>
+          <div class="carrossel-pistas">
+            <button class="seta" id="p-ant" type="button" aria-label="Pista anterior">&#8249;</button>
+            <div class="pista-card" id="p-card" aria-live="polite">
+              <div class="pista-meta">
+                <span class="pista-dir" id="p-dir">Horizontal</span>
+                <span class="pista-pos" id="p-pos">1 de 16</span>
+              </div>
+              <div class="pista-corpo">
+                <span class="pista-num" id="p-num">1</span>
+                <p class="pista-texto" id="p-texto"></p>
+              </div>
+              <div class="pista-estado" id="p-estado"></div>
+              <button class="btn btn-sec" id="p-resumo" type="button" hidden>Ver resumo</button>
+            </div>
+            <button class="seta" id="p-prox" type="button" aria-label="Próxima pista">&#8250;</button>
+          </div>
+
+          <div class="grupos-pistas">
+            <div>
+              <h3>Horizontais</h3>
+              <div class="num-chips" id="chips-h"></div>
+            </div>
+            <div>
+              <h3>Verticais</h3>
+              <div class="num-chips" id="chips-v"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TELA 2: DESCOBRIR A PALAVRA ============ -->
+    <section id="tela-descobrir" role="tabpanel" aria-labelledby="aba-descobrir" hidden>
+      <div class="descobrir">
+        <div class="cartao" id="cartao-jogo">
+          <div class="topo-cartao">
+            <span class="selo" id="d-posicao">Palavra 1 de 16</span>
+            <span class="selo" id="d-tent">3 tentativas</span>
+            <span class="selo" id="d-placar">0 de 16 descobertas</span>
+          </div>
+          <p class="pista-grande" id="d-pista"></p>
+          <p class="dica-linha" id="d-dica" aria-live="polite"></p>
+
+          <form class="form-resp" id="d-form" autocomplete="off">
+            <label for="d-resposta" class="suave" style="width:100%">Qual é a palavra? (sem espaços e sem acentos)</label>
+            <input type="text" id="d-resposta" name="resposta" placeholder="Digite sua resposta" autocapitalize="characters" spellcheck="false" required>
+            <button class="btn btn-ouro" type="submit" id="d-enviar">Responder</button>
+          </form>
+
+          <div class="acoes">
+            <button class="btn btn-sec" type="button" id="d-dica-btn">Dica (1 letra, só 1 vez)</button>
+            <button class="btn btn-vermelho" type="button" id="d-proxima" hidden>Próxima palavra &rarr;</button>
+          </div>
+
+          <div id="d-aviso" aria-live="polite"></div>
+          <div id="d-info" aria-live="polite"></div>
+        </div>
+
+        <div class="cartao">
+          <h2>Seu progresso</h2>
+          <p class="suave">Verde: você acertou. Vermelho: a resposta foi revelada. Clique para rever o resumo.</p>
+          <div class="chips" id="d-chips"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Mini caixa flutuante: aparece quando uma palavra da cruzadinha é confirmada -->
+  <div class="mini-flutuante" id="mini-flutuante" hidden></div>
+
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

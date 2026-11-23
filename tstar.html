@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>T-star | Arquitetura Computacional</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topo">
+    <div class="topo-in">
+      <div class="marca">
+        <h1>T-star</h1>
+        <p>Leia a pergunta e descubra a palavra em poucas tentativas.</p>
+      </div>
+      <nav class="abas">
+        <a class="btn btn-sec" href="index.html">&larr; Voltar para Rota da Luz</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="tstar-main">
+    <div class="placar" aria-live="polite">
+      <span id="t-posicao">Pergunta 1 de 16</span>
+      <span id="t-tentativa">Tentativa 1 de 4</span>
+      <span id="t-trocas">Trocas: 5</span>
+      <span id="t-acertos">Acertos: 0</span>
+    </div>
+
+    <div class="carrossel">
+      <button class="seta" id="t-ant" type="button" aria-label="Pergunta anterior">&#8249;</button>
+      <div class="caixa-pergunta">
+        <div class="rotulo">Pergunta</div>
+        <p class="pergunta" id="t-pergunta"></p>
+        <p class="tamanho" id="t-tamanho"></p>
+      </div>
+      <button class="seta" id="t-prox" type="button" aria-label="Próxima pergunta">&#8250;</button>
+    </div>
+
+    <div class="pontos" id="t-pontos" aria-label="Escolher pergunta"></div>
+
+    <!-- caixas de letras + botão de dica à direita -->
+    <div class="area-jogo">
+      <div class="tstar-grid" id="t-grid" role="grid" aria-label="Tentativas"></div>
+      <button class="btn-dica" id="t-dica" type="button" aria-label="Pedir uma dica">
+        <span class="ico" aria-hidden="true">💡</span>
+        <span class="txt">Dica</span>
+        <small id="t-dica-n">2/2</small>
+      </button>
+    </div>
+    <p class="dicas-txt" id="t-dicas" aria-live="polite"></p>
+
+    <!-- teclado virtual logo abaixo das caixas; o balão só aparece ao passar o mouse -->
+    <div class="tec-wrap" id="t-tec-wrap" tabindex="0" aria-describedby="t-tec-info">
+      <div class="teclado" id="t-teclado" aria-label="Teclado virtual"></div>
+      <div class="tec-info" id="t-tec-info" role="tooltip">
+        <strong>Para que serve o teclado virtual?</strong><br>
+        Clique ou toque nas letras para preencher as casas da linha atual. É útil no celular ou quando você não quer usar o teclado do computador.
+        <b>Enter</b> envia a palavra e <b>⌫</b> apaga a última letra. As teclas mudam de cor conforme suas tentativas:
+        verde (letra certa no lugar certo), amarelo (a letra existe em outra posição) e cinza (a letra não existe).
+      </div>
+    </div>
+
+    <p class="msg-tstar" id="t-msg" aria-live="polite"></p>
+
+    <div class="tstar-resultado" id="t-resultado" aria-live="polite"></div>
+
+    <div class="tstar-resultado" id="t-final" aria-live="polite"></div>
+  </main>
+
+  <script src="data.js"></script>
+  <script src="tstar.js"></script>
+</body>
+</html>
